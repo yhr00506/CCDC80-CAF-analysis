@@ -1,0 +1,398 @@
+[
+  {
+    "archive_path": "code/analysis_revisions_20260906/build_GSE135337_CellOracle_input.py",
+    "source_path": "analysis_revisions_20260906/build_GSE135337_CellOracle_input.py",
+    "sha256": "a12d15c4287f5ba1ea142f98547f3eebf08da1c291a05f8e07fd4b8cdeab3bb6",
+    "bytes": 2710
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_CCDC80_LR_myeloid_integration.py",
+    "source_path": "analysis_revisions_20260906/run_CCDC80_LR_myeloid_integration.py",
+    "sha256": "1dd3ffc3af9dd16d126aacc2ef6df170fed3380b06c455cc99e0c6043f7d32f9",
+    "bytes": 3539
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_CCDC80_TCGA_immune_joint_model.R",
+    "source_path": "analysis_revisions_20260906/run_CCDC80_TCGA_immune_joint_model.R",
+    "sha256": "cbb6f7eb9f08b4dc2548d864595092649d459a3ecceac96212cc83e7a227e4f2",
+    "bytes": 4245
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_CCDC80_external_validation.R",
+    "source_path": "analysis_revisions_20260906/run_CCDC80_external_validation.R",
+    "sha256": "3f311149c682065bd2e414ea7d7127bd631859722fea9cf21c3acb266f80bf48",
+    "bytes": 4383
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_CCDC80_meta_GSE293189_GSE135337.R",
+    "source_path": "analysis_revisions_20260906/run_CCDC80_meta_GSE293189_GSE135337.R",
+    "sha256": "dc68af71e0911d64248b42a50a6274faca17449dc149c893b70d225e2171b649",
+    "bytes": 3503
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_CCDC80_robustness_audit.R",
+    "source_path": "analysis_revisions_20260906/run_CCDC80_robustness_audit.R",
+    "sha256": "753acf56a16008c9b87f888147d0f935c74c927af1d5e74e075ad9fa9a2daa8c",
+    "bytes": 3533
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_CellOracle_GSE135337_CAF_GRN.py",
+    "source_path": "analysis_revisions_20260906/run_CellOracle_GSE135337_CAF_GRN.py",
+    "sha256": "7e551ae91c63602679c2f8496ec1ad13cf6186b868b2394afab3a03b8a54d228",
+    "bytes": 1864
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_CellOracle_TF_perturbations.py",
+    "source_path": "analysis_revisions_20260906/run_CellOracle_TF_perturbations.py",
+    "sha256": "f39636a848ffd4eb5cdd240e1d321bd63f86a679ea26988fd8164a9d96ef2e46",
+    "bytes": 2257
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_ECM_CAF_multivariable_Cox.R",
+    "source_path": "analysis_revisions_20260906/run_ECM_CAF_multivariable_Cox.R",
+    "sha256": "83f9fc844e225e7c3dbc812adb29f1aeb118e2cc9ca36e4094f545d7e852d1c0",
+    "bytes": 2254
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_ECM_CAF_signature_validation.R",
+    "source_path": "analysis_revisions_20260906/run_ECM_CAF_signature_validation.R",
+    "sha256": "48581e197f9bd4a11933e2da0c948556bd96ff80177dbd7568385b4d38269004",
+    "bytes": 4088
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_ECM_program_cohort_heterogeneity.R",
+    "source_path": "analysis_revisions_20260906/run_ECM_program_cohort_heterogeneity.R",
+    "sha256": "fc6e01c9da2f35ec6a18f32ecc77e0058fe0424b3f82ba10f1533431b499fbc3",
+    "bytes": 3051
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_ECM_program_incremental_value.R",
+    "source_path": "analysis_revisions_20260906/run_ECM_program_incremental_value.R",
+    "sha256": "9b1983abf80fdb7f706b164e1fe96f5d75dce5d645762fd3a28f79344816b9de",
+    "bytes": 2613
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_ECM_program_stability.R",
+    "source_path": "analysis_revisions_20260906/run_ECM_program_stability.R",
+    "sha256": "fbf2f29c48a07f2519bbab1ab39591490fb265b48d7da0b6579e3999f8fdb1e3",
+    "bytes": 3879
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_GSE135337_CAF_myeloid_LR.R",
+    "source_path": "analysis_revisions_20260906/run_GSE135337_CAF_myeloid_LR.R",
+    "sha256": "8ce658607e9b0607a278927626caafcfab34f350a1e3eb3351ac4c0ec1a68266",
+    "bytes": 2362
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_GSE135337_CCDC80_LR_association.R",
+    "source_path": "analysis_revisions_20260906/run_GSE135337_CCDC80_LR_association.R",
+    "sha256": "bd0311bb744f4f456bb0d51e03be833e0f1be3ef1c9f32e59d5bc26cf4ef019f",
+    "bytes": 2013
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_GSE135337_patient_level_CCDC80_TME.R",
+    "source_path": "analysis_revisions_20260906/run_GSE135337_patient_level_CCDC80_TME.R",
+    "sha256": "b07fde7373afd684b0b54580e5fa6bde2ec18b183178fcf1e66409843a32743a",
+    "bytes": 4865
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_GSE171351_spatial_ECM_myeloid.py",
+    "source_path": "analysis_revisions_20260906/run_GSE171351_spatial_ECM_myeloid.py",
+    "sha256": "d3138a6ed593ce7566edd66982cae481eab9175184e5e9b86586e63786f9cb05",
+    "bytes": 3078
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_GSE171351_spatial_permutation.py",
+    "source_path": "analysis_revisions_20260906/run_GSE171351_spatial_permutation.py",
+    "sha256": "ec8b261a8f8f96f9a4534ae805ebe5d5f51555c0cd7380d74869daa89ef8385d",
+    "bytes": 4182
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_GSE211388_scores.R",
+    "source_path": "analysis_revisions_20260906/run_GSE211388_scores.R",
+    "sha256": "44f9a30268e8f7008b92f2a96d544e5ece7b3cb29178c4589fa88b36ae6e89d2",
+    "bytes": 3252
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_GSE293189_patient_level_CCDC80_TME.R",
+    "source_path": "analysis_revisions_20260906/run_GSE293189_patient_level_CCDC80_TME.R",
+    "sha256": "b1f1665984c62cfc8732a6be6375c488e82069c30d1507c712220585da2be0e7",
+    "bytes": 6469
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_data_driven_CAF_target_screen.R",
+    "source_path": "analysis_revisions_20260906/run_data_driven_CAF_target_screen.R",
+    "sha256": "b415b4099813952acfa719b96a440fe5f2914f8fe90a565c503d89e5b96dc173",
+    "bytes": 6626
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_external_candidate_axis_validation.R",
+    "source_path": "analysis_revisions_20260906/run_external_candidate_axis_validation.R",
+    "sha256": "b250ed0f6103d312023cdddbb5360cb57b36246063d02cdc599132776c1c79dd",
+    "bytes": 3679
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_independent_ECM_comparator.py",
+    "source_path": "analysis_revisions_20260906/run_independent_ECM_comparator.py",
+    "sha256": "1c1f56c0efc2d2b6be53dfb09aa900033b16530a81ffc60c5df6e5d73afcaf92",
+    "bytes": 3012
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260906/run_patient_internal_CAF_myeloid_colocalization_proxy.py",
+    "source_path": "analysis_revisions_20260906/run_patient_internal_CAF_myeloid_colocalization_proxy.py",
+    "sha256": "ce3bbbc396c48582a405935bf9ca556860a1aa3ac698c95e9b18058e36ef195f",
+    "bytes": 2867
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/run_patient_level_CCDC80_myeloid_association.py",
+    "source_path": "analysis_revisions_20260906/run_patient_level_CCDC80_myeloid_association.py",
+    "sha256": "ccab876b6deea7e7590a7d3ac5bd147407dc35e780424c231b4e53e34fa0f492",
+    "bytes": 2931
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/CCDC80_all_repeat_results.csv",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/CCDC80_all_repeat_results.csv",
+    "sha256": "83badcb240a2d50e8d5a110637730f8223a0de29e446012bb77702836c41fddb",
+    "bytes": 117534
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/CCDC80_repeat_summary.csv",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/CCDC80_repeat_summary.csv",
+    "sha256": "a272add1336e29efcda38a19014b04a4f798eabfe00c3502de9d4bbabea9ba04",
+    "bytes": 23263
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260906/CCDC80_diffRegulation.csv",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260906/CCDC80_diffRegulation.csv",
+    "sha256": "ed6a42903f92d7ed72fa17e6ebe7ef6771fd1187f21d45101f9e0625df132fd8",
+    "bytes": 35148
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260906/RUN_STATUS.txt",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260906/RUN_STATUS.txt",
+    "sha256": "de1083ec330057d9f0c5b429de5b83c5f69649c5ec9a9f590a24502083687c6d",
+    "bytes": 179
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260907/CCDC80_diffRegulation.csv",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260907/CCDC80_diffRegulation.csv",
+    "sha256": "b87bab9d8f191cd11d0fb338253bbc16335fc48b4f270f489f72b42df0a2014a",
+    "bytes": 34692
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260907/RUN_STATUS.txt",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260907/RUN_STATUS.txt",
+    "sha256": "68f86274cb206e60a84f9cb2832ec5c146640dce234886495b19de38fe0608b3",
+    "bytes": 179
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260908/CCDC80_diffRegulation.csv",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260908/CCDC80_diffRegulation.csv",
+    "sha256": "e4c303922959bdd5f0087c723fb66c137210257ca3a60d758a4e3750c4378cfa",
+    "bytes": 35323
+  },
+  {
+    "archive_path": "signature/analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260908/RUN_STATUS.txt",
+    "source_path": "analysis_revisions_20260906/virtual_knockout_repeat/CCDC80/seed_20260908/RUN_STATUS.txt",
+    "sha256": "c62d233ed7d17cdb0df9141d6de1230aafff12ced563df1142f2a75340630f08",
+    "bytes": 179
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260907/make_Figure2_CAF_programs.R",
+    "source_path": "analysis_revisions_20260907/make_Figure2_CAF_programs.R",
+    "sha256": "b1d894b7ad3296a5300145d52a3ac8b72822452afbb770f6d8c21cc90c156a75",
+    "bytes": 5686
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260907/plot_Figure1_CAF_atlas.R",
+    "source_path": "analysis_revisions_20260907/plot_Figure1_CAF_atlas.R",
+    "sha256": "429357f9b8f066b9787d74901f67eec531dd7d10942738ad3a0d644e4f798619",
+    "bytes": 7273
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260907/repair_global_CAF_annotation.R",
+    "source_path": "analysis_revisions_20260907/repair_global_CAF_annotation.R",
+    "sha256": "8a388e1fbdbff2848d6c0e972df6601a56efba88fd638c76530f2fd198bb3daf",
+    "bytes": 3539
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260908/make_Figure8_robustness_incremental.R",
+    "source_path": "analysis_revisions_20260908/make_Figure8_robustness_incremental.R",
+    "sha256": "dcaec6cc83e62f04805f1d747d6275954278d3c5242e1a023612f665911bf11c",
+    "bytes": 13428
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260908/make_Figure9_integrated_evidence.R",
+    "source_path": "analysis_revisions_20260908/make_Figure9_integrated_evidence.R",
+    "sha256": "35243bd313ca9f6593dfb59b954aedce75e005293c97f64293373866bfd24001",
+    "bytes": 8542
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260908/make_SuppFigure1_QC_integration.R",
+    "source_path": "analysis_revisions_20260908/make_SuppFigure1_QC_integration.R",
+    "sha256": "bf9e53e8dfdca0b4dcc144abf797f8985fd7ca1488d952c23b1ae465648ebcaa",
+    "bytes": 7103
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260908/make_SuppFigure2_annotation_stability.R",
+    "source_path": "analysis_revisions_20260908/make_SuppFigure2_annotation_stability.R",
+    "sha256": "c3147ed4670cdccd788e6e3b3d7150470da4d1f1eb1af1d323f1cd84f30e3a92",
+    "bytes": 7610
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260908/make_SuppFigure3_program_gene_stability.R",
+    "source_path": "analysis_revisions_20260908/make_SuppFigure3_program_gene_stability.R",
+    "sha256": "ef9b358a2de2fe3549f66d55039e3f50cacf1f81b295d025bdb93b58e1e68792",
+    "bytes": 7509
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260909/build_frontiers_manuscript.py",
+    "source_path": "analysis_revisions_20260909/build_frontiers_manuscript.py",
+    "sha256": "22810e0688773f09a07b8b0eba956b9396e287bd82328e08a878e8a461e2a0a5",
+    "bytes": 30526
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260909/expand_frontiers_manuscript.py",
+    "source_path": "analysis_revisions_20260909/expand_frontiers_manuscript.py",
+    "sha256": "e9fe2fae848a45567dbfa232e2f0a95c9d92559ab4cd8ea65405ca229510e782",
+    "bytes": 4988
+  },
+  {
+    "archive_path": "code/analysis_revisions_20260909/make_supplementary_tables.R",
+    "source_path": "analysis_revisions_20260909/make_supplementary_tables.R",
+    "sha256": "469a6de8a1754e368ce9d354796e4726531f85e2b838c8b6ed62e61eb148ac43",
+    "bytes": 6722
+  },
+  {
+    "archive_path": "code/external_CAF_data/integrate_BLCA_CAF_specific_20260905.R",
+    "source_path": "external_CAF_data/integrate_BLCA_CAF_specific_20260905.R",
+    "sha256": "80631a216759e66522a76f87a6d95fb86ce8da99be928dc767baedc0304f43f9",
+    "bytes": 3506
+  },
+  {
+    "archive_path": "code/external_CAF_data/integrate_GSE190888_GSE135337.R",
+    "source_path": "external_CAF_data/integrate_GSE190888_GSE135337.R",
+    "sha256": "8778d04c681577f465ec33cf404d08b392b13ae60b2c249f29c20b43e5a8598b",
+    "bytes": 4568
+  },
+  {
+    "archive_path": "metadata/external_CAF_data/integrated/CAF_specific_candidate_audit.csv",
+    "source_path": "external_CAF_data/integrated/CAF_specific_candidate_audit.csv",
+    "sha256": "e81fa6495e219e13d0dd78aee845aa2f28e9870e6204410cce16c9b73837d309",
+    "bytes": 336
+  },
+  {
+    "archive_path": "metadata/external_CAF_data/integrated/CAF_specific_integrated_metadata.csv",
+    "source_path": "external_CAF_data/integrated/CAF_specific_integrated_metadata.csv",
+    "sha256": "54f7fceb45f9ebb7a23637c77e5eb4cad6cb8c4631b1269f8e18a0176d90e664",
+    "bytes": 941991
+  },
+  {
+    "archive_path": "metadata/external_CAF_data/integrated/CAF_specific_sessionInfo.txt",
+    "source_path": "external_CAF_data/integrated/CAF_specific_sessionInfo.txt",
+    "sha256": "b13573fb463e30d8ead698aa67011df4a6984c6979bb738e8a2919d827bfbd8a",
+    "bytes": 3370
+  },
+  {
+    "archive_path": "metadata/external_CAF_data/integrated/sessionInfo.txt",
+    "source_path": "external_CAF_data/integrated/sessionInfo.txt",
+    "sha256": "b13573fb463e30d8ead698aa67011df4a6984c6979bb738e8a2919d827bfbd8a",
+    "bytes": 3370
+  },
+  {
+    "archive_path": "code/external_CAF_data/process_new_cohorts_20260906.R",
+    "source_path": "external_CAF_data/process_new_cohorts_20260906.R",
+    "sha256": "7c58f1ff00e464ca05e52d8ec62e253d6abca65fe707a6b130d953a600b53873",
+    "bytes": 4716
+  },
+  {
+    "archive_path": "code/final_analysis_20260907/Figure4_CAF_myeloid/make_Figure4_CAF_myeloid.R",
+    "source_path": "final_analysis_20260907/Figure4_CAF_myeloid/make_Figure4_CAF_myeloid.R",
+    "sha256": "a0f802163b0be60c7e4f20a5e486e749cb25a514b855d888ce55e3e5534d2451",
+    "bytes": 10232
+  },
+  {
+    "archive_path": "code/final_analysis_20260907/Figure5_external_validation/make_Figure5_external_validation.R",
+    "source_path": "final_analysis_20260907/Figure5_external_validation/make_Figure5_external_validation.R",
+    "sha256": "8eef537ef9313cb48f7567fc43181e0dc0e3a5f9d6aedf5c4b8657e7d20bfb4c",
+    "bytes": 5242
+  },
+  {
+    "archive_path": "code/final_analysis_20260907/Figure6_spatial_mechanistic/make_Figure6_final.R",
+    "source_path": "final_analysis_20260907/Figure6_spatial_mechanistic/make_Figure6_final.R",
+    "sha256": "31382276e9f3da62ec61b77c275eefff028fb7ec7e7c298f77f366dd804b8172",
+    "bytes": 5832
+  },
+  {
+    "archive_path": "code/final_analysis_20260907/Figure6_spatial_mechanistic/make_Figure6_spatial_mechanistic.R",
+    "source_path": "final_analysis_20260907/Figure6_spatial_mechanistic/make_Figure6_spatial_mechanistic.R",
+    "sha256": "794adc9e40c7f28debe904cb8f2e68b0f014ad0d6407bcbfd120c2d85bdee261",
+    "bytes": 4529
+  },
+  {
+    "archive_path": "code/final_analysis_20260907/Figure7_clinical_prioritization/make_Figure7_final.R",
+    "source_path": "final_analysis_20260907/Figure7_clinical_prioritization/make_Figure7_final.R",
+    "sha256": "f8a55b07f2ad104b15b9e3fd43d90bdf7464690f027cfebe9872328829b04d3c",
+    "bytes": 6956
+  },
+  {
+    "archive_path": "signature/revision_20261016_R1_comment1/assets/CCDC80_associated_19_gene_program.csv",
+    "source_path": "revision_20261016_R1_comment1/assets/CCDC80_associated_19_gene_program.csv",
+    "sha256": "c51f8c4822fae6b03b0a57ac34d10c5637c3df2da88284f6eea8dff75e2baa04",
+    "bytes": 1277
+  },
+  {
+    "archive_path": "signature/revision_20261016_R1_comment1/assets/CCDC80_associated_19_gene_symbols.txt",
+    "source_path": "revision_20261016_R1_comment1/assets/CCDC80_associated_19_gene_symbols.txt",
+    "sha256": "a9170cfd15136e179fe82c7362a56ec36873a1f920efc2c25fbea1caa6c53124",
+    "bytes": 119
+  },
+  {
+    "archive_path": "code/revision_20261016_R1_comment1/assets/MSigDB_2025.1_Hallmark_source_manifest.json",
+    "source_path": "revision_20261016_R1_comment1/assets/MSigDB_2025.1_Hallmark_source_manifest.json",
+    "sha256": "ac4cc2a3811e3bca95d5e57194389735968f82066b72968b758f59835bf9046b",
+    "bytes": 532
+  },
+  {
+    "archive_path": "code/revision_20261016_R1_comment1/assets/MatrisomePortal_source_manifest.json",
+    "source_path": "revision_20261016_R1_comment1/assets/MatrisomePortal_source_manifest.json",
+    "sha256": "4b06a3ae36253c3c825f72230d8d3ba101368c098dd3804f9923eb0388dbc08a",
+    "bytes": 571
+  },
+  {
+    "archive_path": "signature/revision_20261016_R1_comment1/generate_CCDC80_program_gene_list.R",
+    "source_path": "revision_20261016_R1_comment1/generate_CCDC80_program_gene_list.R",
+    "sha256": "69f06b22c9f98f5f3c7598456f1d8b07521f4f1525536ac689de6a6e0d05b19d",
+    "bytes": 1040
+  },
+  {
+    "archive_path": "metadata/revision_20261016_R1_comment1/patient_level_analysis/analysis_metadata.csv",
+    "source_path": "revision_20261016_R1_comment1/patient_level_analysis/analysis_metadata.csv",
+    "sha256": "249d836581ea190c76de415ea098c25d7c49e55d9772744506b76713c3b27c13",
+    "bytes": 625
+  },
+  {
+    "archive_path": "code/revision_20261016_R1_comment1/run_patient_level_signature_increment.R",
+    "source_path": "revision_20261016_R1_comment1/run_patient_level_signature_increment.R",
+    "sha256": "4aba6a893bfd0687e01d9c4089b27ee4034e19074700480c5883b8641913c169",
+    "bytes": 11939
+  },
+  {
+    "archive_path": "code/revision_20261016_R1_comment1/virtual_perturbation_and_gene_list_audit.md",
+    "source_path": "revision_20261016_R1_comment1/virtual_perturbation_and_gene_list_audit.md",
+    "sha256": "0c4a618ffe044bb10b1472f76c6b4aa77a5c481b0bf97fd8813a2cc3f33c4b8a",
+    "bytes": 3347
+  },
+  {
+    "archive_path": "code/virtual_knockout/run_sctenifoldknk_pilot.R",
+    "source_path": "virtual_knockout/run_sctenifoldknk_pilot.R",
+    "sha256": "aa3826f07453800f324c23b227aa3315faec7866dd21686df9be18703e9aa1b0",
+    "bytes": 2057
+  },
+  {
+    "archive_path": "signature/virtual_knockout/run_sctenifoldknk_repeat.R",
+    "source_path": "virtual_knockout/run_sctenifoldknk_repeat.R",
+    "sha256": "4b09b18c77c2327fcadf0db0c1dbe6eaaa2ee0a6d72338db42051f6e67f33d5b",
+    "bytes": 1826
+  }
+]
