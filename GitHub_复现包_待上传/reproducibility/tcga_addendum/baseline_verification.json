@@ -1,0 +1,9 @@
+{
+  "n": 400,
+  "events": 176,
+  "primary_ids_identical": true,
+  "program_score_recomputed_max_error": 4.6629e-15,
+  "baseline_program_p": 0.8082,
+  "expression_hash": "9675ccb530285ea6071c6249432fca6dbf2e109c8052a55e709b143c419a3f8d",
+  "clinical_hash": "90a342135a16be93e6135684b4ac19e6f44dff58dccbedfe83b811fcb57cbf40"
+}

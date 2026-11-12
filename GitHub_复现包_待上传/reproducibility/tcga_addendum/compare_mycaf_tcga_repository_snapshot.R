@@ -1,0 +1,138 @@
+suppressPackageStartupMessages({
+  library(SummarizedExperiment)
+  library(survival)
+  library(digest)
+  library(jsonlite)
+})
+project_root <- Sys.getenv("CCDC80_PROJECT_ROOT")
+output_dir <- Sys.getenv("CCDC80_MYCAF_OUTPUT")
+stopifnot(nzchar(project_root), nzchar(output_dir))
+comparison_dir <- file.path(output_dir, "tcga_comparison")
+dir.create(comparison_dir, recursive=TRUE, showWarnings=FALSE)
+expression_file <- file.path(project_root, "00_data_audit/TCGA_expression.rds")
+clinical_file <- file.path(project_root, "00_data_audit/TCGA_clinical.csv")
+primary_file <- file.path(project_root, "审稿/返修_R2_图表呈现_分析依据/Figure8_R2/patient_level_sources_400patient/TCGA_patient_level_survival_input.csv")
+matched_file <- file.path(project_root, "审稿/返修_R2_图表呈现_分析依据/Figure9_R2/Figure9_R2_patient_level_matched_400.csv")
+signature_file <- file.path(output_dir, "F_POSTN_candidate_signature.txt")
+program_file <- file.path(project_root, "revision_20261016_R1_comment1/assets/CCDC80_associated_19_gene_program.csv")
+cache_file <- file.path(output_dir, "tcga_patient_expression_cache.rds")
+expected_expression_hash <- "9675ccb530285ea6071c6249432fca6dbf2e109c8052a55e709b143c419a3f8d"
+expected_clinical_hash <- "90a342135a16be93e6135684b4ac19e6f44dff58dccbedfe83b811fcb57cbf40"
+stopifnot(digest(file=clinical_file, algo="sha256") == expected_clinical_hash)
+stopifnot(digest(file=expression_file, algo="sha256") == expected_expression_hash)
+primary <- read.csv(primary_file, check.names=FALSE)
+matched <- read.csv(matched_file, check.names=FALSE)
+stopifnot(nrow(primary) == 400, !anyDuplicated(primary$patient_id), sum(primary$os_event) == 176, all(primary$os_time >= 0))
+stopifnot(nrow(matched) == 400, !anyDuplicated(matched$patient_id), setequal(primary$patient_id, matched$patient_id))
+matched <- matched[match(primary$patient_id, matched$patient_id), ]
+for (field in c("CCDC80_program", "CAF_9gene", "os_time", "os_event", "age", "sex", "stage_simple")) {
+  stopifnot(isTRUE(all.equal(primary[[field]], matched[[field]], tolerance=1e-12)))
+}
+program <- unique(toupper(trimws(read.csv(program_file)$gene)))
+stopifnot(length(program) == 19)
+if (file.exists(cache_file)) {
+  cache <- readRDS(cache_file)
+  stopifnot(cache$source_hash == expected_expression_hash)
+  patient_expression <- cache$expression
+} else {
+  expression <- readRDS(expression_file)
+  stopifnot("unstranded" %in% assayNames(expression))
+  symbols <- toupper(trimws(as.character(rowData(expression)$gene_name)))
+  valid <- !is.na(symbols) & nzchar(symbols) & !duplicated(symbols)
+  barcodes <- colnames(expression)
+  selected <- substr(barcodes, 14, 15) == "01" & !is.na(barcodes)
+  patient_ids <- substr(barcodes[selected], 1, 12)
+  patient_order <- unique(patient_ids)
+  transformed <- log2(as.matrix(assay(expression, "unstranded")[valid, selected, drop=FALSE]) + 1)
+  rownames(transformed) <- symbols[valid]
+  patient_expression <- vapply(patient_order, function(patient) rowMeans(transformed[, patient_ids == patient, drop=FALSE]), numeric(nrow(transformed)))
+  rownames(patient_expression) <- rownames(transformed)
+  stopifnot(length(patient_order) == 406, sum(selected) == 412)
+  saveRDS(list(expression=patient_expression, source_hash=expected_expression_hash), cache_file, compress=FALSE)
+  rm(expression, transformed)
+  gc()
+}
+stopifnot(all(primary$patient_id %in% colnames(patient_expression)))
+gene_scores <- function(genes) {
+  detected <- intersect(genes, rownames(patient_expression))
+  if (length(detected) < 2 || length(detected) / length(genes) < 0.8) stop("Prespecified 80% signature coverage gate failed")
+  scaled <- t(scale(t(patient_expression[detected, , drop=FALSE])))
+  values <- colMeans(scaled, na.rm=TRUE)
+  stopifnot(all(is.finite(values)))
+  list(values=values, detected=detected, zero_variance=detected[!apply(patient_expression[detected, , drop=FALSE], 1, sd)])
+}
+program_check <- gene_scores(program)
+stopifnot(max(abs(program_check$values[primary$patient_id] - primary$CCDC80_program)) < 1e-8)
+baseline_data <- matched
+baseline_data$stage_simple <- factor(baseline_data$stage_simple, levels=c("I_II", "III_IV"))
+baseline_data$sex <- factor(baseline_data$sex)
+baseline_data$age_z <- as.numeric(scale(baseline_data$age))
+baseline_data$program_z <- as.numeric(scale(baseline_data$CCDC80_program))
+baseline <- coxph(Surv(os_time, os_event) ~ stage_simple + age_z + sex + program_z, data=baseline_data, ties="efron")
+baseline_p <- summary(baseline)$coefficients["program_z", "Pr(>|z|)"]
+stopifnot(abs(baseline_p - 0.808) < 0.001)
+write_json(list(n=400, events=176, primary_ids_identical=TRUE, program_score_recomputed_max_error=max(abs(program_check$values[primary$patient_id] - primary$CCDC80_program)), baseline_program_p=baseline_p, expression_hash=expected_expression_hash, clinical_hash=expected_clinical_hash), file.path(comparison_dir, "baseline_verification.json"), pretty=TRUE, auto_unbox=TRUE)
+if ("--prepare-only" %in% commandArgs(trailingOnly=TRUE)) {
+  message("TCGA preparation and baseline verification complete; no myCAF comparison fitted")
+  quit(status=0)
+}
+stopifnot(file.exists(signature_file))
+signature <- sort(unique(toupper(trimws(readLines(signature_file)))))
+stopifnot(length(signature) >= 2, all(nzchar(signature)))
+signature_hash <- digest(file=signature_file, algo="sha256")
+stopifnot(identical(signature_hash, readLines(file.path(output_dir, "F_POSTN_candidate_signature.sha256"))))
+mycaf <- gene_scores(signature)
+analysis <- baseline_data
+analysis$myCAF_derived <- mycaf$values[analysis$patient_id]
+analysis$myCAF_derived_z <- as.numeric(scale(analysis$myCAF_derived))
+stopifnot(nrow(analysis) == 400, sum(analysis$os_event) == 176, !anyNA(analysis$myCAF_derived_z))
+benchmarks <- c("CAF_9gene", "ECM_3gene", "collagen_core", "matrisome_2014", "Hallmark_TGF_Beta_2025.1")
+for (benchmark in benchmarks) analysis[[paste0(benchmark, "_z")]] <- as.numeric(scale(analysis[[benchmark]]))
+write.csv(data.frame(signature="derived_F_POSTN_myCAF", defined=length(signature), detected=length(mycaf$detected), coverage=length(mycaf$detected)/length(signature), zero_variance=length(mycaf$zero_variance), intersection_with_CCDC80_program=length(intersect(signature, program))), file.path(comparison_dir, "signature_coverage_overlap.csv"), row.names=FALSE)
+write.csv(data.frame(gene=signature, detected_in_TCGA=signature %in% mycaf$detected, member_of_CCDC80_program=signature %in% program), file.path(comparison_dir, "signature_gene_mapping.csv"), row.names=FALSE)
+write.csv(analysis, file.path(comparison_dir, "TCGA_patient_level_mycaf_scores.csv"), row.names=FALSE)
+score_columns <- c("CCDC80_program", "myCAF_derived", benchmarks)
+write.csv(cor(analysis[, score_columns], method="spearman"), file.path(comparison_dir, "signature_spearman_correlations.csv"))
+families <- list(clinical=character(), myCAF="myCAF_derived_z")
+for (benchmark in benchmarks) families[[benchmark]] <- paste0(benchmark, "_z")
+families$all_existing <- paste0(benchmarks, "_z")
+families$all_existing_plus_myCAF <- c(paste0(benchmarks, "_z"), "myCAF_derived_z")
+coefficients <- list()
+performance <- list()
+comparisons <- list()
+diagnostics <- list()
+models <- list()
+for (family in names(families)) {
+  base_formula <- reformulate(c("stage_simple", "age_z", "sex", families[[family]]), response="Surv(os_time, os_event)")
+  full_formula <- update(base_formula, . ~ . + program_z)
+  base_fit <- coxph(base_formula, data=analysis, ties="efron", x=TRUE, y=TRUE, model=TRUE)
+  full_fit <- coxph(full_formula, data=analysis, ties="efron", x=TRUE, y=TRUE, model=TRUE)
+  stopifnot(base_fit$n == 400, full_fit$n == 400, base_fit$nevent == 176, full_fit$nevent == 176)
+  stopifnot(all(is.finite(coef(base_fit))), all(is.finite(coef(full_fit))))
+  likelihood <- anova(base_fit, full_fit, test="LRT")
+  lr <- 2 * (as.numeric(logLik(full_fit)) - as.numeric(logLik(base_fit)))
+  degrees <- attr(logLik(full_fit), "df") - attr(logLik(base_fit), "df")
+  probability <- pchisq(lr, df=degrees, lower.tail=FALSE)
+  stopifnot(abs(lr - likelihood$Chisq[2]) < 1e-8, abs(probability - likelihood$`Pr(>|Chi|)`[2]) < 1e-10)
+  comparisons[[family]] <- data.frame(benchmark=family, n=400, events=176, LR=lr, df=degrees, p=probability)
+  for (condition in c("base", "plus_program")) {
+    fit <- if (condition == "base") base_fit else full_fit
+    model_name <- paste(family, condition, sep="_")
+    models[[model_name]] <- fit
+    summary_fit <- summary(fit)
+    coefficients[[model_name]] <- data.frame(model=model_name, term=rownames(summary_fit$coefficients), coefficient=coef(fit), SE=summary_fit$coefficients[, "se(coef)"], HR=summary_fit$conf.int[, "exp(coef)"], CI_low=summary_fit$conf.int[, "lower .95"], CI_high=summary_fit$conf.int[, "upper .95"], p=summary_fit$coefficients[, "Pr(>|z|)"], n=400, events=176)
+    performance[[model_name]] <- data.frame(model=model_name, n=400, events=176, logLik=as.numeric(logLik(fit)), AIC=AIC(fit), BIC=BIC(fit), C_index=unname(summary_fit$concordance[1]), C_index_SE=unname(summary_fit$concordance[2]))
+  }
+  ph <- cox.zph(full_fit, transform="km")$table
+  diagnostics[[family]] <- data.frame(model=paste0(family, "_plus_program"), term=rownames(ph), chisq=ph[, "chisq"], df=ph[, "df"], p=ph[, "p"])
+}
+comparisons <- do.call(rbind, comparisons)
+comparisons$FDR_BH <- p.adjust(comparisons$p, method="BH")
+write.csv(comparisons, file.path(comparison_dir, "incremental_LRT.csv"), row.names=FALSE)
+write.csv(do.call(rbind, coefficients), file.path(comparison_dir, "cox_coefficients.csv"), row.names=FALSE)
+write.csv(do.call(rbind, performance), file.path(comparison_dir, "model_performance.csv"), row.names=FALSE)
+write.csv(do.call(rbind, diagnostics), file.path(comparison_dir, "proportional_hazards_checks.csv"), row.names=FALSE)
+saveRDS(models, file.path(comparison_dir, "models.rds"))
+writeLines(capture.output(sessionInfo()), file.path(comparison_dir, "sessionInfo.txt"))
+write_json(list(stage="COMPARISON_COMPLETE", n=400, events=176, signature_sha256=signature_hash, myCAF_genes=length(signature), signature_definition="derived reconstruction; not author-published exact list", checks=c("input hashes and exact patient matching", "independent recalculation of 19-gene scores and baseline model", "nested LRT independently recomputed from log likelihood")), file.path(comparison_dir, "verification.json"), pretty=TRUE, auto_unbox=TRUE)
+message("COMPARISON_COMPLETE: ", length(signature), " derived myCAF genes; 400 patients; 176 events")

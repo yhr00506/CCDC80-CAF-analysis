@@ -1,0 +1,32 @@
+base <- "/data/y01014/diliyaer/BLCA_CAF_project/GDF15_CAF_project"
+rev <- file.path(base, "analysis_revisions_20260906")
+out <- file.path(rev, "independent_ECM_comparator")
+dir.create(out, showWarnings = FALSE, recursive = TRUE)
+program <- read.csv(file.path(rev, "CCDC80_ECM_program_validation", "TCGA_ECM_program_scores.csv"), check.names = FALSE)
+names(program)[names(program) == "program_score"] <- "CCDC80_ECM_program"
+sig <- read.csv(file.path(rev, "ECM_CAF_signature_validation", "TCGA_ECM_signature_multivariable_input.csv"), check.names = FALSE)
+d <- merge(program, sig, by = "sample_id")
+vars <- c("os_time", "os_event", "stage_simple", "age", "CAF_score", "CCDC80_ECM_program", "ECM_signature")
+d <- d[complete.cases(d[, vars]), ]
+d$CCDC80_ECM_program <- as.numeric(scale(d$CCDC80_ECM_program))
+d$ECM_signature <- as.numeric(scale(d$ECM_signature))
+d$CAF_score <- as.numeric(scale(d$CAF_score))
+d$age <- as.numeric(scale(d$age))
+d$stage_simple <- factor(d$stage_simple)
+write.csv(d, file.path(out, "TCGA_incremental_value_input.csv"), row.names = FALSE)
+if (!requireNamespace("survival", quietly = TRUE)) stop("R package survival is required")
+library(survival)
+f1 <- coxph(Surv(os_time, os_event) ~ stage_simple + age + CAF_score + ECM_signature, data = d, ties = "efron")
+f2 <- coxph(Surv(os_time, os_event) ~ stage_simple + age + CAF_score + CCDC80_ECM_program, data = d, ties = "efron")
+f3 <- coxph(Surv(os_time, os_event) ~ stage_simple + age + CAF_score + ECM_signature + CCDC80_ECM_program, data = d, ties = "efron")
+models <- list(independent_ECM = f1, CCDC80_program = f2, both = f3)
+extract <- function(f, model) {
+  s <- summary(f); z <- as.data.frame(s$coefficients); ci <- as.data.frame(s$conf.int)
+  data.frame(model = model, term = rownames(z), HR = ci[, "exp(coef)"], CI_low = ci[, "lower .95"], CI_high = ci[, "upper .95"], p = z[, "Pr(>|z|)"], row.names = NULL)
+}
+res <- do.call(rbind, Map(extract, models, names(models)))
+write.csv(res, file.path(out, "TCGA_incremental_value_Cox.csv"), row.names = FALSE)
+write.csv(as.data.frame(anova(f1, f3, test = "LRT")), file.path(out, "TCGA_incremental_value_LRT_ECM_plus_CCDC80.csv"), row.names = FALSE)
+write.csv(as.data.frame(anova(f2, f3, test = "LRT")), file.path(out, "TCGA_incremental_value_LRT_CCDC80_plus_ECM.csv"), row.names = FALSE)
+writeLines(c("Completed nested Cox incremental-value analysis.", paste0("N=", nrow(d), "; events=", sum(d$os_event)), "Scores standardized within the merged TCGA analysis set.", "Interpretation is incremental association, not causality."), file.path(out, "INCREMENTAL_VALUE_STATUS.txt"))
+print(res)

@@ -1,0 +1,11 @@
+{
+  "collection": "HALLMARK_TGF_BETA_SIGNALING",
+  "resource": "MSigDB human gene sets 2025.1 (HS)",
+  "accessed_date": "2026-10-16",
+  "retrieval_url": "https://zenodo.org/records/15800824/files/msigdb.2025.1.Hs.rds?download=1",
+  "provided_via": "msigdbr 25.1.1; package function load_msigdb_df() references this file",
+  "expected_md5": "d898c396b109d61ef9b20b0632f0bfa7",
+  "observed_md5": "d898c396b109d61ef9b20b0632f0bfa7",
+  "sha256": "32617446fbcb71306c534d730f6243b09de922883870d954b8194f6b980ad663",
+  "bytes": 33730584
+}

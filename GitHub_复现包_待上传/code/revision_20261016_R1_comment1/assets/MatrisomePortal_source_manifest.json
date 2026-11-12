@@ -1,0 +1,14 @@
+{
+  "source_url": "https://docs.google.com/spreadsheets/d/12OslOlOhQQtHMOUKAFFgAQXL2zYX-g9q/export?format=csv",
+  "portal_url": "https://sites.google.com/uic.edu/matrisome/matrisome-annotations/homo-sapiens",
+  "resource": "Homo sapiens matrisome masterlist; portal labels revision 2014",
+  "accessed_utc": "2026-10-16",
+  "download_bytes": 171828,
+  "download_sha256": "b28dcd8b5048d649a0b44376f819afe9207b9dea21d63f704eca02b9d6763ea4",
+  "tabular_gene_rows": 1027,
+  "unique_gene_symbols": 1027,
+  "categories": [
+    "Core matrisome",
+    "Matrisome-associated"
+  ]
+}

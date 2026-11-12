@@ -1,0 +1,7 @@
+target=CCDC80
+seed=20260906
+n_genes_input=1000
+n_cells_input=500
+method=scTenifoldKnk_2.1.0
+repeat_analysis=TRUE
+observational scRNA-seq; virtual perturbation is not causal proof

@@ -1,0 +1,9 @@
+{
+  "stage": "COMPARISON_COMPLETE",
+  "n": 400,
+  "events": 176,
+  "signature_sha256": "6c7cf70bd791a979ab1414f69f2833792cc6f54b457c5cb70ecdae4dc4646460",
+  "myCAF_genes": 274,
+  "signature_definition": "derived reconstruction; not author-published exact list",
+  "checks": ["input hashes and exact patient matching", "independent recalculation of 19-gene scores and baseline model", "nested LRT independently recomputed from log likelihood"]
+}
